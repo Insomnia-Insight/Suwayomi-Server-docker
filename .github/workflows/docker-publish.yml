@@ -1,0 +1,42 @@
+name: dreamy_teddy
+services:
+  suwayomi:
+    cpu_shares: 90
+    command: []
+    container_name: suwa
+    deploy:
+      resources:
+        limits:
+          memory: 15987M
+    environment:
+      - TZ=Etc/UTC
+    image: ghcr.io/Insomnia-Insight/suwayomi-server:preview
+    labels:
+      icon: https://icon.casaos.io/main/all/suwayomi.png
+    ports:
+      - target: 4567
+        published: "4567"
+        protocol: tcp
+    privileged: true
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /DATA/AppData/cbz3
+        target: /home/suwayomi/.local/share/Tachidesk
+    devices: []
+    cap_add: []
+    network_mode: bridge
+    hostname: suwa
+x-casaos:
+  author: self
+  category: self
+  hostname: 192.168.1.246
+  icon: https://icon.casaos.io/main/all/suwayomi.png
+  index: /
+  is_uncontrolled: false
+  port_map: "4567"
+  scheme: http
+  store_app_id: dreamy_teddy
+  title:
+    custom: ""
+    en_us: suwayomi
